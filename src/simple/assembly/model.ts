@@ -149,7 +149,7 @@ export class Plant {
         let list = plantOwner.getSome(id);
         assert(list.indexOf(caller) != -1, "Only plant owner can call this function!");
     }
-    // Book price must be lower or equal than deposited money
+
     static assert_amount(id: u32): void {
         let plant = this.findPlantById(id);
         assert(plant.price <= Context.attachedDeposit, "Not enough money attached!")
