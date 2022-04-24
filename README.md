@@ -8,77 +8,77 @@ git clone https://github.com/bilgekesenn/near-organic-food-chain
 
 ## Steps
 
-*To Login
+* To Login
 ```
 near login
 ```
 
-*Export the development account to the $CONTRACT
+* Export the development account to the $CONTRACT
 ```
 export CONTRACT=YOUR_DEV_ACCOUNT_HERE
 ```
 
-*To Build
+* To Build
 ```
 yarn build:release
 ```
 
-*To Deploy
+* To Deploy
 ```
 near dev-deploy ./build/debug/simple.wasm
 ```
 
-*To See Menu
+* To See Menu
 ```
 near call $CONTRACT menu --accountId <YOUR_TESTNET_ACCOUNT>.testnet
 ```
 
-*Enter As (farmer,store,customer)
+* Enter As (farmer,store,customer)
 ```
 near call $CONTRACT enterAs '{"user": "user_name"}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
 ```
 
-*createPlant (as a farmer you can create plant)
+* createPlant (as a farmer you can create plant)
 ```
 near call $CONTRACT createPlant '{"desc": "description", "price": price}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
 ```
 
-*setPlantingTime
+* setPlantingTime
 ```
 near call $CONTRACT setPlantingTime '{"id": "id", "plantingTime": plantingTime}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
 ```
 
-*setFertilizerType
+* setFertilizerType
 ```
 near call $CONTRACT setFertilizerType '{"id": "id", "fertilizerType": fertilizerType}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
 ```
 
-*setLocation
+* setLocation
 ```
 near call $CONTRACT setLocation '{"id": "id", "location": location}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
 ```
 
-*setDateOfArrival
+* setDateOfArrival
 ```
 near call $CONTRACT setDateOfArrival '{"id": "id", "dateOfArrival": dateOfArrival}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
 ```
 
-*setRemainingLife
+* setRemainingLife
 ```
 near call $CONTRACT setRemainingLife '{"id": "id", "remainingLife": remainingLife}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
 ```
 
-*buyPlant(you can buy as a customer)
+* buyPlant(you can buy as a customer)
 ```
 near call $CONTRACT buyPlant '{"id": "id"}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
 ```
 
-*findPlantById
+* findPlantById
 ```
 near call $CONTRACT findPlantById '{"id": "id"}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
 ```
 
-*findPlantById
+* findPlantById
 ```
 near call $CONTRACT findPlantById '{"id": "id"}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
 ```
