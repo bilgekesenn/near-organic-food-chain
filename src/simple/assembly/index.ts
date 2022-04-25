@@ -1,9 +1,15 @@
-import { storage, Context } from "near-sdk-as"
+import { storage, logging, Context } from "near-sdk-as"
 import { Plant } from "./model"
+import { Money } from "./utils";
 
 // return the string 'hello world'
 export function menu(): string {
   return Plant.menu();
+}
+
+// return the string 'hello world'
+export function createPlant(desc: string, price: Money): Plant {
+  return Plant.createPlant(desc, price);
 }
 
 // create Order As Farmer

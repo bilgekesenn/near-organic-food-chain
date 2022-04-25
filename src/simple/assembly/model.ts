@@ -6,7 +6,7 @@ import {
 } from "near-sdk-as";
 
 import { AccountId, Money, Timestamp } from "./utils";
-
+import { logging } from "near-sdk-as"
 //create plants on blockchain
 export const plants = new PersistentUnorderedMap<u32, Plant>("plant");
 export const plantOwner = new PersistentUnorderedMap<u32, Array<AccountId>>("access");
@@ -36,12 +36,14 @@ export class Plant {
     }
 
     static menu(): string {
+        logging.log("menu")
         return "createOrderAsFarmer\ncreateOrderAsStore\nsetPlantingTime\nsetFertilizerType\nsetHarvestTime\nsetLocation\nsetDateOfArrival\nsetRemainingLife\nenterAs"
     }
 
     static createPlant(desc: string, price: Money): Plant {
         const plant = new Plant(desc, price);
         plants.set(plant.id, plant);
+        logging.log("Plant created.")
         return plant;
     }
 
@@ -50,6 +52,7 @@ export class Plant {
         this.assert_owner(plant, Context.sender);
         plant.plantingTime = plantingTime;
         plants.set(plant.id, plant);
+        logging.log("Planting time set")
         return plant.plantingTime
     }
 
@@ -62,6 +65,7 @@ export class Plant {
         list.push(plant.location);
         list.push(plant.dateOfArrival);
         list.push(plant.remainingLife);
+        logging.log("Plant Info")
         return list;
     }
 
@@ -70,6 +74,7 @@ export class Plant {
         this.assert_owner(plant, Context.sender);
         plant.fertilizerType = fertilizerType;
         plants.set(plant.id, plant);
+        logging.log("Fertilizer type set")
         return plant.fertilizerType
     }
 
@@ -78,6 +83,7 @@ export class Plant {
         this.assert_owner(plant, Context.sender);
         plant.harvestTime = harvestTime;
         plants.set(plant.id, plant);
+        logging.log("Harvest time set")
         return plant.harvestTime
     }
 
@@ -86,6 +92,7 @@ export class Plant {
         this.assert_owner(plant, Context.sender);
         plant.location = location;
         plants.set(plant.id, plant);
+        logging.log("Location set")
         return plant.location
     }
 
@@ -94,6 +101,7 @@ export class Plant {
         this.assert_owner(plant, Context.sender);
         plant.dateOfArrival = dateOfArrival;
         plants.set(plant.id, plant);
+        logging.log("Date of arrival set")
         return plant.dateOfArrival
     }
 
@@ -102,6 +110,7 @@ export class Plant {
         this.assert_owner(plant, Context.sender);
         plant.remainingLife = remainingLife;
         plants.set(plant.id, plant);
+        logging.log("Remaining life set")
         return plant.remainingLife
     }
 
