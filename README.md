@@ -25,7 +25,7 @@ yarn build:release
 
 * To Deploy
 ```
-near dev-deploy ./build/debug/simple.wasm
+near dev-deploy ./build/release/simple.wasm
 ```
 
 * To See Menu
