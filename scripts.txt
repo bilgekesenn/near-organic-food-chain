@@ -1,0 +1,13 @@
+near call $CONTRACT enterAs '{"user":"farmer"}' --accountId bilgek.testnet
+near call $CONTRACT createPlant '{"desc":"tomato","price":"5"}' --accountId bilgek.testnet
+near call $CONTRACT setPlantingTime '{"id":0,"platingTime":"May 12"}' --accountId bilgek.testnet
+near call $CONTRACT setFertilizerType '{"id":0,"fertilizerType":"nitrogen"}' --accountId bilgek.testnet
+near call $CONTRACT setHarvestTime '{"id":0,"harvestTime":"August 12"}' --accountId bilgek.testnet
+near call $CONTRACT setLocation '{"id":0,"location":"Çanakkale"}' --accountId bilgek.testnet
+
+near call $CONTRACT enterAs '{"user":"store"}' --accountId bilgek.testnet
+near call $CONTRACT setDateOfArrival '{"id":0,"dateOfArrival":"August 14"}' --accountId bilgek.testnet
+near call $CONTRACT setRemainingLife '{"id":0,"remainingLife":"5 days"}' --accountId bilgek.testnet
+
+near call $CONTRACT enterAs '{"user":"customer"}' --accountId bilgek.testnet
+near call $CONTRACT getPlantInfo '{"id":0}' --accountId bilgek.testnet
