@@ -1,82 +1,82 @@
 #!/usr/bin/env bash
-
-# exit on first error after this point to avoid redeploying with successful build
 set -e
 
-echo
-echo ---------------------------------------------------------
-echo "Step 0: Check for environment variable with contract name"
-echo ---------------------------------------------------------
-echo
-
 [ -z "$CONTRACT" ] && echo "Missing \$CONTRACT environment variable" && exit 1
-[ -z "$CONTRACT" ] || echo "Found it! \$CONTRACT is set to [ $CONTRACT ]"
 
 echo
+echo "First To see menu call menu() on the contract"
+echo
+echo "near call $CONTRACT menu"
+near call $CONTRACT menu --accountId $OWNER
 echo
 echo
-echo To See Menu
-
-near call $CONTRACT menu --accountId <YOUR_TESTNET_ACCOUNT>.testnet
-
-
-echo "Enter As (farmer,store,customer)"
-
-near call $CONTRACT enterAs '{"user": "user_name"}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
-
-
-echo "createPlant (as a farmer you can create plant)"
-
-near call $CONTRACT createPlant '{"desc": "description", "price": price}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
-
-
-echo "setPlantingTime"
-
-near call $CONTRACT setPlantingTime '{"id": "id", "plantingTime": plantingTime}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
-
-
-echo "setFertilizerType"
-
-near call $CONTRACT setFertilizerType '{"id": "id", "fertilizerType": fertilizerType}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
-
-
-echo "setLocation"
-
-near call $CONTRACT setLocation '{"id": "id", "location": location}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
-
-
-echo "setDateOfArrival"
-
-near call $CONTRACT setDateOfArrival '{"id": "id", "dateOfArrival": dateOfArrival}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
-
-
-echo "setRemainingLife"
-
-near call $CONTRACT setRemainingLife '{"id": "id", "remainingLife": remainingLife}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
-
-
-echo "buyPlant(you can buy as a customer)"
-
-near call $CONTRACT buyPlant '{"id": "id"}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
-
-
-echo "findPlantById"
-
-near call $CONTRACT findPlantById '{"id": "id"}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
-
-
-echo "findPlantById"
-
-near call $CONTRACT findPlantById '{"id": "id"}' --accountId <YOUR_TESTNET_ACCOUNT>.testnet
-
+echo 'About to call enterAs() on the contract'
+echo near call \$CONTRACT enterAs '{"user": "farmer"}' --accountId $OWNER
+echo
+echo \$CONTRACT is $CONTRACT
+echo
+near call $CONTRACT enterAs '{"user": "farmer"}' --accountId $OWNER
 echo
 echo
-
-# the following line fails with an error because we can't write to storage without signing the message
-# --> FunctionCallError(HostError(ProhibitedInView { method_name: "storage_write" }))
-# near view $CONTRACT write '{"key": "some-key", "value":"some value"}'
-near call $CONTRACT write '{"key": "some-key", "value":"some value"}' --accountId $CONTRACT
-
+echo 'About to call createPlant() on the contract as description: Tomato and price: 5'
+echo near call \$CONTRACT createPlant '{"desc": "Tomato", "price": "5"}' --accountId $OWNER
 echo
-echo "now run this script again to see changes made by this file"
-exit 0
+near call $CONTRACT createPlant '{"desc": "Tomato", "price": "5"}' --accountId $OWNER
+echo
+echo
+echo 'About to call setPlantingTime() on the contract as id: 0 and plantingTime: May 2'
+echo near call \$CONTRACT setPlantingTime '{"id": 0, "plantingTime": "May 2"}' --accountId $OWNER
+echo
+near call $CONTRACT setPlantingTime '{"id":0, "plantingTime": "May 2"}'  --accountId $OWNER
+echo
+echo
+echo 'About to call setFertilizerType() on the contract as id: 0 and fertilizerType:nitrogen'
+echo near call \$CONTRACT setFertilizerType '{"id":0, "fertilizerType": "nitrogen"}' --accountId $OWNER
+echo
+near call $CONTRACT setFertilizerType '{"id":0, "fertilizerType": "nitrogen"}'  --accountId $OWNER
+echo
+echo
+echo 'About to call setLocation() on the contract as id: 0 and location:Çanakkale'
+echo near call \$CONTRACT setLocation '{"id": "id", "location": "Çanakkale"}' --accountId $OWNER
+echo
+near call $CONTRACT setLocation '{"id":0, "location": "Çanakkale"}'  --accountId $OWNER
+echo
+echo
+echo 'About to call setHarvestTime() on the contract as id: 0 and harvestTime: August 12'
+echo near call \$CONTRACT setHarvestTime '{"id":0,"harvestTime":"August 12"}' --accountId $OWNER
+echo
+near call $CONTRACT setHarvestTime '{"id":0,"harvestTime":"August 12"}'  --accountId $OWNER
+echo
+echo
+echo 'About to call enterAs() on the contract as store after order from farmer'
+echo near call \$CONTRACT enterAs '{"user": "store"}' --accountId $OWNER
+echo
+echo
+near call $CONTRACT enterAs '{"user": "store"}' --accountId $OWNER
+echo
+echo
+echo 'About to call setDateOfArrival() on the contract as id: 0 and dateOfArrival: August 14'
+echo near call \$CONTRACT setDateOfArrival '{"id":0, "dateOfArrival": "August 14"}' --accountId $OWNER
+echo
+near call $CONTRACT setDateOfArrival '{"id":0, "dateOfArrival": "August 14"}'  --accountId $OWNER
+echo
+echo
+echo 'About to call setRemainingLife() on the contract as id: 0 and "remainingLife":"5 days"'
+echo near call \$CONTRACT setRemainingLife '{"id":0,"remainingLife":"5 days"}' --accountId $OWNER
+echo
+near call $CONTRACT setRemainingLife '{"id":0,"remainingLife":"5 days"}' --accountId $OWNER
+echo
+echo
+echo 'About to call enterAs() on the contract as a customer after order from store'
+echo near call \$CONTRACT enterAs '{"user": "customer"}' --accountId $OWNER
+echo
+echo
+near call $CONTRACT enterAs '{"user": "customer"}' --accountId $OWNER
+echo
+echo
+echo 'About to call getPlantInfo() on the contract as id: 0'
+echo near call \$CONTRACT getPlantInfo '{"id":0}' --accountId $OWNER
+echo
+near call $CONTRACT getPlantInfo '{"id":0}' --accountId $OWNER
+echo
+echo
